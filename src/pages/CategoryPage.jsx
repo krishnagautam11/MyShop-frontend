@@ -7,11 +7,11 @@ export const CategoryPage = () => {
   const { categoryName } = useParams();
   const [products, setProducts] = useState([]);
 
-  useEffect(() => {
-    fetch(`http://localhost:5000/api/products?category=${categoryName}`)
-      .then(res => res.json())
-      .then(data => setProducts(data));
-  }, [categoryName]);
+ useEffect(() => {
+  fetch(`https://myshop-backend-production1.up.railway.app/api/products?category=${categoryName}`)
+    .then(res => res.json())
+    .then(data => setProducts(data));
+}, [categoryName]);
 
   return (
     <div className="p-8">
