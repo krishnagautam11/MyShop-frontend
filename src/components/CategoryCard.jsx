@@ -29,7 +29,7 @@ const categories = [
 export const CategoryCard = () => {
 
     return (
-        <div className="p-8 bg-stone-300 w-full h-full ">
+        <div className="p-8 bg-stone-300 w-full h-80 ">
             <div className="grid grid-cols-3">
                 {categories.map((category) => (
                     <Link
