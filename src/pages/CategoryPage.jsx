@@ -27,7 +27,7 @@ export const CategoryPage = () => {
           products.map((product, index) => (
             <ProductCard
               key={index}
-              image={getImageUrl(product.image)}  {/* Use helper here */}
+              image={getImageUrl(product.image)}  
               name={product.name}
               price={product.price}
             />
