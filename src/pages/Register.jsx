@@ -13,25 +13,28 @@ export const Register = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const { name, email, password } = formData;
-    if (!name || !email || !password) {
-      return alert("Please fill in all fields");
-    }
+  const { name, email, password } = formData;
+  if (!name || !email || !password) {
+    return alert("Please fill in all fields");
+  }
 
-    setLoading(true);
+  setLoading(true);
 
-    try {
-      const res = await axios.post("/auth/register", formData);
-      alert(res.data.message);
-      navigate("/login"); // ✅ redirect to login
-    } catch (error) {
-      alert(error.response?.data?.error || "Registration failed");
-    } finally {
-      setLoading(false);
-    }
-  };
+  try {
+    const res = await axios.post("/auth/register", formData, {
+      withCredentials: true,
+    });
+    alert(res.data.message);
+    navigate("/login"); // ✅ redirect to login
+  } catch (error) {
+    alert(error.response?.data?.error || "Registration failed");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div className="flex flex-col min-h-screen bg-stone-100">
