@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const baseURL = import.meta.env.VITE_API_URL || "https://myshop-backend-production1.up.railway.app/api";
+const baseURL = (import.meta.env.VITE_API_URL || "https://myshop-backend-production1.up.railway.app") + "/api";
+
 
 const instance = axios.create({
   baseURL,
