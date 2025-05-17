@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Footer } from "../components/Footer";
+import axios from "../axios"; // ✅ Make sure path is correct (e.g. src/axios.js)
 
 export const Login = ({ setUserLoggedIn }) => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -11,23 +12,20 @@ export const Login = ({ setUserLoggedIn }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include", 
-      body: JSON.stringify(formData),
-    });
+    try {
+      const res = await axios.post("/auth/login", formData, {
+        withCredentials: true,
+      });
 
-    const data = await res.json();
+      const data = res.data;
 
-    if (res.ok) {
       localStorage.setItem("user", JSON.stringify(data.user));
       localStorage.setItem("token", data.token);
       alert(data.message);
-      setUserLoggedIn(true); // ✅ set state
-      navigate("/");         // ✅ no page refresh
-    } else {
-      alert(data.error);
+      setUserLoggedIn(true);
+      navigate("/");
+    } catch (error) {
+      alert(error.response?.data?.error || "Login failed");
     }
   };
 
