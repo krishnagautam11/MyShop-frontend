@@ -1,4 +1,3 @@
-// pages/CategoryPage.jsx
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ProductCard } from '../components/ProductCard';
@@ -7,11 +6,11 @@ export const CategoryPage = () => {
   const { categoryName } = useParams();
   const [products, setProducts] = useState([]);
 
- useEffect(() => {
-  fetch(`https://myshop-backend-production1.up.railway.app/api/products?category=${categoryName}`)
-    .then(res => res.json())
-    .then(data => setProducts(data));
-}, [categoryName]);
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/products?category=${categoryName}`)
+      .then(res => res.json())
+      .then(data => setProducts(data));
+  }, [categoryName]);
 
   return (
     <div className="p-8">
@@ -33,5 +32,3 @@ export const CategoryPage = () => {
     </div>
   );
 };
-
-
