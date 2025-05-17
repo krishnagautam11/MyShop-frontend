@@ -2,6 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ProductCard } from '../components/ProductCard';
 
+const getImageUrl = (url) => {
+  if (!url) return "";
+  return url.replace('http://localhost:5000', import.meta.env.VITE_API_URL);
+};
+
 export const CategoryPage = () => {
   const { categoryName } = useParams();
   const [products, setProducts] = useState([]);
@@ -22,7 +27,7 @@ export const CategoryPage = () => {
           products.map((product, index) => (
             <ProductCard
               key={index}
-              image={product.image}
+              image={getImageUrl(product.image)}  {/* Use helper here */}
               name={product.name}
               price={product.price}
             />
