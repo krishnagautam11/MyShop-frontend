@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Footer } from "../components/Footer";
-import axios from "../axios"; // ✅ Make sure path is correct (e.g. src/axios.js)
+import axios from "../axios"; 
 
 export const Login = ({ setUserLoggedIn }) => {
   const [formData, setFormData] = useState({ email: "", password: "" });
